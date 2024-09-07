@@ -19,9 +19,8 @@ class DestinationCard extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => _navigateToDetails(context),
-      child: Container(
+      child: SizedBox(
         height: 380,
-        margin: const EdgeInsets.symmetric(vertical: 10),
         child: Stack(
           children: [
             _buildMainImage(),
