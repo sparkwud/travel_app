@@ -38,7 +38,7 @@ class DestinationCard extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => TravelDestinationDetailsPage(
-          destinationName: 'destination_${(index % 11)}.jpeg',
+          destinationName: 'destination_${(index % 12)}.jpeg',
         ),
       ),
     );

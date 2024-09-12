@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_app/utils/context_extensions.dart';
+import 'package:travel_app/widgets/random_profile_images.dart';
 
 import '../utils/app_palette.dart';
-import '../widgets/frosted_widget.dart';
 
 class TravelDestinationDetailsPage extends StatefulWidget {
   final String destinationName;
@@ -42,10 +43,10 @@ class _TravelDestinationDetailsPageState
           Positioned.fill(
             child: ListView(
               controller: _scrollController,
-              padding: const EdgeInsets.only(top: 0, bottom: 150),
+              padding: const EdgeInsets.only(top: 0, bottom: 120),
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * .72,
+                  height: context.height * .65,
                   child: Stack(
                     children: [
                       Positioned.fill(
@@ -62,7 +63,7 @@ class _TravelDestinationDetailsPageState
                         left: 0,
                         right: 0,
                         child: Container(
-                          height: 200,
+                          height: 300,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
@@ -80,12 +81,9 @@ class _TravelDestinationDetailsPageState
                         bottom: 100,
                         left: 0,
                         right: 0,
-                        child: Container(
-                          height: 210,
-                          width: 180,
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
@@ -106,100 +104,46 @@ class _TravelDestinationDetailsPageState
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 15),
-                                  SizedBox(
-                                    height: 100,
-                                    width: 100,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            const Icon(
-                                              CupertinoIcons.star_fill,
-                                              color: AppPalette.yellow,
-                                              size: 24,
-                                            ),
-                                            const SizedBox(width: 6),
-                                            Text(
-                                              '4.5',
-                                              style: TextStyle(
-                                                fontSize: 21,
-                                                color: Colors.white
-                                                    .withOpacity(.8),
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 8),
-                                        Text(
-                                          '123 reviews',
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.white.withOpacity(.8),
-                                            fontWeight: FontWeight.w400,
+                                  16.spacing,
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          const Icon(
+                                            CupertinoIcons.star_fill,
+                                            color: AppPalette.yellow,
+                                            size: 24,
                                           ),
+                                          6.spacing,
+                                          Text(
+                                            '4.5',
+                                            style: TextStyle(
+                                              fontSize: 21,
+                                              color:
+                                                  Colors.white.withOpacity(.8),
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      8.spacing,
+                                      Text(
+                                        '123 reviews',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white.withOpacity(.8),
+                                          fontWeight: FontWeight.w400,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 5),
-                              SizedBox(
-                                height: 40,
-                                width: 170,
-                                child: Stack(
-                                  children: [
-                                    for (int index = 0; index < 3; index++)
-                                      Positioned(
-                                        left: index * 28,
-                                        child: Container(
-                                          height: 40,
-                                          width: 40,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(.3),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          padding: const EdgeInsets.all(2.5),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            child: Image.asset(
-                                              'assets/profile/profile_${(index % 6) + 1}.jpeg',
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    Positioned(
-                                      left: 3 * 28,
-                                      child: SizedBox(
-                                        width: 40,
-                                        height: 40,
-                                        child: FrostedWidget(
-                                          color: Colors.grey,
-                                          child: const Text(
-                                            '+4',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              16.spacing,
+                              const RandomProfileImages(),
                             ],
                           ),
                         ),
@@ -213,53 +157,52 @@ class _TravelDestinationDetailsPageState
                     ],
                   ),
                 ),
-                Container(
-                  height: 100,
-                  color: AppPalette.offWhite,
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
                     children: [
-                      DestinationStatsWidget(
-                        title: 'Location',
-                        value: 'Portugal',
-                        iconData: CupertinoIcons.location_solid,
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          DestinationStatsWidget(
+                            title: 'Location',
+                            value: 'Portugal',
+                            iconData: CupertinoIcons.location_solid,
+                          ),
+                          DestinationStatsWidget(
+                            title: 'Price',
+                            value: '80\u20AC',
+                            iconData: CupertinoIcons.money_euro_circle,
+                          ),
+                        ],
                       ),
-                      DestinationStatsWidget(
-                        title: 'Price',
-                        value: '80\u20AC',
-                        iconData: CupertinoIcons.money_euro_circle,
+                      16.spacing,
+                      const Text(
+                        'Cabo da Roca or Cape Roca is a cape which forms the westernmost '
+                        'point of the Sintra Mountain Range, of mainland Portugal, of '
+                        'continental Europe, and of the Eurasian land mass. '
+                        'It is situated in the municipality of Sintra, near Azóia, '
+                        'in the southwest of the district of Lisbon, forming the westernmost '
+                        'extent of the Serra de Sintra. The cape is in the westernmost point of '
+                        'the European continent, located within the Sintra-Cascais '
+                        'Natural Park, and is a popular tourist attraction that '
+                        'marks the most westerly point of mainland Europe.',
+                        maxLines: 11,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
-                  ),
-                ),
-                Container(
-                  color: AppPalette.offWhite,
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: const Text(
-                    'Cabo da Roca or Cape Roca is a cape which forms the westernmost '
-                    'point of the Sintra Mountain Range, of mainland Portugal, of '
-                    'continental Europe, and of the Eurasian land mass. '
-                    'It is situated in the municipality of Sintra, near Azóia, '
-                    'in the southwest of the district of Lisbon, forming the westernmost '
-                    'extent of the Serra de Sintra. The cape is in the westernmost point of '
-                    'the European continent, located within the Sintra-Cascais '
-                    'Natural Park, and is a popular tourist attraction that '
-                    'marks the most westerly point of mainland Europe.',
-                    maxLines: 11,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w600,
-                    ),
                   ),
                 ),
               ],
             ),
           ),
           Positioned(
-            top: 70,
+            top: 45,
             left: 25,
             child: GestureDetector(
               onTap: () {
@@ -268,16 +211,16 @@ class _TravelDestinationDetailsPageState
               behavior: HitTestBehavior.translucent,
               child: TweenAnimationBuilder(
                 tween: Tween<double>(
-                  begin: _scrollPosition >= 160 ? 1 : 0,
-                  end: _scrollPosition >= 160 ? 0 : 1,
+                  begin: _scrollPosition >= 120 ? 1 : 0,
+                  end: _scrollPosition >= 120 ? 0 : 1,
                 ),
                 duration: const Duration(milliseconds: 500),
                 curve:
-                    _scrollPosition >= 160 ? Curves.easeOut : Curves.bounceOut,
+                    _scrollPosition >= 120 ? Curves.easeOut : Curves.bounceOut,
                 builder: (context, double value, child) {
                   return Container(
-                    height: 65 * value,
-                    width: 65 * value,
+                    height: 40 * value,
+                    width: 40 * value,
                     decoration: BoxDecoration(
                       color: AppPalette.darkGrey,
                       borderRadius: BorderRadius.circular(50),
@@ -285,7 +228,7 @@ class _TravelDestinationDetailsPageState
                     child: Icon(
                       Icons.arrow_back_rounded,
                       color: Colors.white,
-                      size: 30 * value,
+                      size: 20 * value,
                     ),
                   );
                 },
@@ -323,12 +266,11 @@ class _TravelDestinationDetailsPageState
               ),
               alignment: Alignment.center,
               child: const Text(
-                'Let\'s try!',
+                'Book Now',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: -.6,
                 ),
               ),
             ),
@@ -356,15 +298,15 @@ class DestinationStatsWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            height: 60,
-            width: 60,
+            height: 50,
+            width: 50,
             decoration: BoxDecoration(
               color: AppPalette.lightGrey,
               borderRadius: BorderRadius.circular(50),
             ),
             child: Icon(iconData),
           ),
-          const SizedBox(width: 15),
+          16.spacing,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -372,7 +314,7 @@ class DestinationStatsWidget extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: AppPalette.lightBrown,
                   fontWeight: FontWeight.w600,
                 ),
@@ -380,7 +322,7 @@ class DestinationStatsWidget extends StatelessWidget {
               Text(
                 value,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -401,7 +343,10 @@ class ListViewHeader extends StatefulWidget {
 
 class _ListViewHeaderState extends State<ListViewHeader> {
   int _selectedIndex = 0;
-  final List<String> _tabs = ['Overview', 'Reviews'];
+  final List<String> _tabs = [
+    'Overview',
+    'Reviews',
+  ];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -417,53 +362,49 @@ class _ListViewHeaderState extends State<ListViewHeader> {
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: AppPalette.offWhite,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(45),
-                  topRight: Radius.circular(45),
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(45),
                 ),
               ),
-              padding: const EdgeInsets.only(left: 30, top: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < _tabs.length; i++)
                     Padding(
-                      padding: const EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.only(right: 20),
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
                             _selectedIndex = i;
                           });
                         },
-                        child: SizedBox(
-                          width: 100,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                _tabs[i],
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: i == _selectedIndex
-                                      ? AppPalette.orange
-                                      : AppPalette.lightBrown,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              _tabs[i],
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: i == _selectedIndex
+                                    ? AppPalette.orange
+                                    : AppPalette.lightBrown,
+                                fontWeight: FontWeight.bold,
                               ),
-                              const SizedBox(height: 5),
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 300),
-                                height: i == _selectedIndex ? 9 : 0,
-                                width: i == _selectedIndex ? 9 : 0,
-                                decoration: BoxDecoration(
-                                  color: i == _selectedIndex
-                                      ? AppPalette.orange
-                                      : AppPalette.lightBrown,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
+                            ),
+                            const SizedBox(height: 5),
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              height: i == _selectedIndex ? 9 : 0,
+                              width: i == _selectedIndex ? 9 : 0,
+                              decoration: BoxDecoration(
+                                color: i == _selectedIndex
+                                    ? AppPalette.orange
+                                    : AppPalette.lightBrown,
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -472,11 +413,11 @@ class _ListViewHeaderState extends State<ListViewHeader> {
             ),
           ),
           Positioned(
-            right: 25,
-            top: 5,
+            right: 35,
+            top: 10,
             child: Container(
-              height: 90,
-              width: 90,
+              height: 70,
+              width: 70,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(90),
@@ -491,15 +432,9 @@ class _ListViewHeaderState extends State<ListViewHeader> {
               child: const Icon(
                 Icons.bookmark_rounded,
                 color: AppPalette.orange,
-                size: 35,
+                size: 30,
               ),
             ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(),
           ),
         ],
       ),

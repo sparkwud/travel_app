@@ -26,7 +26,7 @@ class RandomProfileImages extends StatelessWidget {
     final others = random.nextInt(4) + 1;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

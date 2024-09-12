@@ -14,6 +14,7 @@ class MainApp extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return MaterialApp(
       home: const OnboardingScreen(),
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(textTheme),
       ),
